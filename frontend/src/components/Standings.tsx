@@ -1,12 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+// Import API URL from environment variables
+const API_URL = import.meta.env.VITE_API_URL;
+
+if (!API_URL) {
+    throw new Error('API_URL environment variable is not defined');
+}
+
+console.log('Using API URL:', API_URL);
 
 const Standings = () => {
     const [standings, setStandings] = useState<any[]>([]);
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
-        fetch('/api/standings')
-            .then(response => response.json())
+        console.log('Fetching standings from:', `${API_URL}/api/standings`);
+        fetch(`${API_URL}/api/standings`)  // ✅ Use full API URL
+            .then(response => {
+                // Log the response to see what is being returned
+                console.log('API Response:', response);
+                return response.json();
+            })
             .then(data => {
                 console.log('Full API Response:', data); // Debugging log
 

@@ -7,3 +7,4 @@ rulesets:
   - python-inclusive
   - python-pandas
   - python-security
+  - github-actions
