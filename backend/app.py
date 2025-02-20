@@ -11,7 +11,7 @@ app = Flask(__name__)
 def get_standings():
     url = 'http://api.football-data.org/v4/competitions/PL/standings'
     headers = {'X-Auth-Token': os.getenv('FOOTBALL_DATA_API_KEY')}
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, timeout=5)
     data = response.json()
     standings = {
         'standings': data
